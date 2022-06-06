@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 import re
 import time
 import datetime
-
+import os
 import emailer
 
 now = datetime.datetime.now()
@@ -18,6 +18,7 @@ email_password = "aghwpyjnitsqvstd"
 email_body = "Here is the new episode: "
 
 while True:
+    print(os.environ.get("email_sender"))
     next_episode = curr_episode + 1
     email_subject = f'Spy X Family: New Episode {next_episode} [Automated Email]  ' \
                     + str(now.day) + '-' \
