@@ -11,14 +11,13 @@ now = datetime.datetime.now()
 url_base = "https://gogoanime.sk/spy-x-family-episode-"
 curr_episode = 8
 
-email_sender = "hackerutz21@gmail.com"
-email_recipient = "hackerutz21@gmail.com"
-email_password = "aghwpyjnitsqvstd"
+email_sender = os.environ.get("email_sender")
+email_receiver = os.environ.get("email_receiver")
+email_password = os.environ.get("email_pass")
 
 email_body = "Here is the new episode: "
 
 while True:
-    print(os.environ.get("email_sender"))
     next_episode = curr_episode + 1
     email_subject = f'Spy X Family: New Episode {next_episode} [Automated Email]  ' \
                     + str(now.day) + '-' \
@@ -38,7 +37,7 @@ while True:
         print(email_body + video_url)
         emailer.send(
             email_sender,
-            email_recipient,
+            email_receiver,
             email_password,
             email_subject,
             email_body + video_url
@@ -46,4 +45,4 @@ while True:
 
         curr_episode += 1
 
-    time.sleep(5)
+    time.sleep(3600)
