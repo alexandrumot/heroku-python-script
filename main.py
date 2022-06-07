@@ -16,13 +16,11 @@ email_receiver = os.environ.get("email_receiver")
 email_password = os.environ.get("email_pass")
 
 email_body = "Here is the new episode: "
+log_datetime = f'{str(now.hour)}:{str(now.minute)}:{str(now.second)} {str(now.day)}-{str(now.month)}-{str(now.year)}: '
 
 while True:
     next_episode = curr_episode + 1
-    email_subject = f'Spy X Family: New Episode {next_episode} [Automated Email]  ' \
-                    + str(now.day) + '-' \
-                    + str(now.month) + '-' \
-                    + str(now.year)
+    email_subject = f'Spy X Family: New Episode {next_episode} Watch it now! {str(now.day)}-{str(now.month)}-{str(now.year)}'
 
     r = requests.get(url_base + str(next_episode))
     soup = BeautifulSoup(r.content, "html.parser")
@@ -32,8 +30,10 @@ while True:
         src_video_url = video_elem.attrs.get("src")
         video_url = "https:" + src_video_url
     except AttributeError:
+        print(log_datetime)
         print("The is no new episode to watch!")
     else:
+        print(log_datetime)
         print(email_body + video_url)
         emailer.send(
             email_sender,
