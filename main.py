@@ -1,3 +1,4 @@
+import py_compile
 import requests
 from bs4 import BeautifulSoup
 import re
@@ -6,10 +7,11 @@ import datetime
 import os
 import emailer
 
+
 now = datetime.datetime.now()
 
 url_base = "https://gogoanime.sk/spy-x-family-episode-"
-curr_episode = 8
+curr_episode = 9
 
 email_sender = os.environ.get("email_sender")
 email_receiver = os.environ.get("email_receiver")
