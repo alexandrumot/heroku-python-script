@@ -1,4 +1,3 @@
-import py_compile
 import requests
 from bs4 import BeautifulSoup
 import re
@@ -18,7 +17,7 @@ email_receiver = os.environ.get("email_receiver")
 email_password = os.environ.get("email_pass")
 
 email_body = "Here is the new episode: "
-log_datetime = f'{str(now.hour)}:{str(now.minute)}:{str(now.second)} {str(now.day)}-{str(now.month)}-{str(now.year)}: '
+log_datetime = f'{str(now.hour+3)}:{str(now.minute)}:{str(now.second)} {str(now.day)}-{str(now.month)}-{str(now.year)}: '
 
 while True:
     next_episode = curr_episode + 1
