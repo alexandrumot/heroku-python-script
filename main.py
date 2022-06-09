@@ -5,16 +5,17 @@ import time
 import datetime
 import os
 import emailer
-
-
+from notify_run import Notify
+ 
+notify = Notify()
 now = datetime.datetime.now()
 
 url_base = "https://gogoanime.sk/spy-x-family-episode-"
 curr_episode = 9
 
-email_sender = os.environ.get("email_sender")
-email_receiver = os.environ.get("email_receiver")
-email_password = os.environ.get("email_pass")
+email_sender = os.environ.get("SENDER")
+email_receiver = os.environ.get("RECEIVER")
+email_password = os.environ.get("PASSWORD")
 
 email_body = "Here is the new episode: "
 log_datetime = f'{str(now.hour+3)}:{str(now.minute)}:{str(now.second)} {str(now.day)}-{str(now.month)}-{str(now.year)}: '
@@ -34,8 +35,7 @@ while True:
         print(log_datetime)
         print("The is no new episode to watch!")
     else:
-        print(log_datetime)
-        print(email_body + video_url)
+        print(log_datetime, email_body + video_url)
         emailer.send(
             email_sender,
             email_receiver,
@@ -43,6 +43,7 @@ while True:
             email_subject,
             email_body + video_url
         )
+        notify.send(f'Spy X Family: New Episode {next_episode}!')
 
         curr_episode += 1
 
