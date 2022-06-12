@@ -8,6 +8,8 @@ import emailer
 from notify_run import Notify
  
 notify = Notify()
+notify.register()
+
 now = datetime.datetime.now()
 
 url_base = "https://gogoanime.sk/spy-x-family-episode-"
