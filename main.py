@@ -35,7 +35,7 @@ while True:
         print(log_datetime)
         print("The is no new episode to watch!")
     else:
-        print(log_datetime, email_body + video_url)
+        print(email_body + video_url, email_sender, email_receiver, email_password, email_subject)
         emailer.send(
             email_sender,
             email_receiver,
